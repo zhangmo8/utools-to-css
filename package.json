@@ -11,13 +11,13 @@
   "dependencies": {
     "@codemirror/lang-sass": "^6.0.2",
     "@codemirror/state": "^6.4.1",
-    "@fsegurai/codemirror-theme-github-dark": "^6.0.2",
-    "@fsegurai/codemirror-theme-github-light": "^6.0.2",
     "@iconify-json/iconoir": "^1.1.46",
     "@kobalte/core": "^0.13.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "codemirror": "^6.0.1",
+    "codemirror-theme-vitesse": "^0.1.2",
+    "sass": "^1.77.8",
     "solid-js": "^1.8.19",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"

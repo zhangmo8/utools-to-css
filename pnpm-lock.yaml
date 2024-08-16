@@ -14,12 +14,6 @@ importers:
       '@codemirror/state':
         specifier: ^6.4.1
         version: 6.4.1
-      '@fsegurai/codemirror-theme-github-dark':
-        specifier: ^6.0.2
-        version: 6.0.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/highlight@1.2.1)
-      '@fsegurai/codemirror-theme-github-light':
-        specifier: ^6.0.2
-        version: 6.0.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/highlight@1.2.1)
       '@iconify-json/iconoir':
         specifier: ^1.1.46
         version: 1.1.46
@@ -35,6 +29,12 @@ importers:
       codemirror:
         specifier: ^6.0.1
         version: 6.0.1(@lezer/common@1.2.1)
+      codemirror-theme-vitesse:
+        specifier: ^0.1.2
+        version: 0.1.2(@codemirror/language@6.10.2)(@codemirror/view@6.32.0)
+      sass:
+        specifier: ^1.77.8
+        version: 1.77.8
       solid-js:
         specifier: ^1.8.19
         version: 1.8.21
@@ -65,10 +65,10 @@ importers:
         version: 5.5.4
       vite:
         specifier: ^5.4.0
-        version: 5.4.0(@types/node@22.3.0)
+        version: 5.4.0(@types/node@22.3.0)(sass@1.77.8)
       vite-plugin-solid:
         specifier: ^2.10.2
-        version: 2.10.2(solid-js@1.8.21)(vite@5.4.0(@types/node@22.3.0))
+        version: 2.10.2(solid-js@1.8.21)(vite@5.4.0(@types/node@22.3.0)(sass@1.77.8))
 
 packages:
 
@@ -354,22 +354,6 @@ packages:
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
 
-  '@fsegurai/codemirror-theme-github-dark@6.0.2':
-    resolution: {integrity: sha512-/+rhO0ll2qELxBGk970GoT5WIushhcxI9RRpLD4FbtUZefhtCB19RAoZKk2JePupSOXQF/Mc/edLF/LLMauSJA==}
-    peerDependencies:
-      '@codemirror/language': ^6.0.0
-      '@codemirror/state': ^6.0.0
-      '@codemirror/view': ^6.0.0
-      '@lezer/highlight': ^1.0.0
-
-  '@fsegurai/codemirror-theme-github-light@6.0.2':
-    resolution: {integrity: sha512-M47qAjAvnYZYY5widq/bss1DSsCO9P+pDmlE0LvG2m2CM7JvLmF6vSHyQ4PYZDSiAoawkb+IZnhdlVTXjq/uOA==}
-    peerDependencies:
-      '@codemirror/language': ^6.0.0
-      '@codemirror/state': ^6.0.0
-      '@codemirror/view': ^6.0.0
-      '@lezer/highlight': ^1.0.0
-
   '@iconify-json/iconoir@1.1.46':
     resolution: {integrity: sha512-6JP4ufiU6kP48NEcBT3FR7pGStpJ8PYoAkkTvzvk4qVd8ObDJU9cEULnStOGs4VmZ0LMNtmmmMQlApXBKHl+jA==}
 
@@ -599,6 +583,13 @@ packages:
   '@types/node@22.3.0':
     resolution: {integrity: sha512-nrWpWVaDZuaVc5X84xJ0vNrLvomM205oQyLsRt7OHNZbSHslcWsvgFR7O7hire2ZonjLrWBbedmotmIlJDVd6g==}
 
+  '@uiw/codemirror-themes@4.23.0':
+    resolution: {integrity: sha512-9fiji9xooZyBQozR1i6iTr56YP7j/Dr/VgsNWbqf5Szv+g+4WM1iZuiDGwNXmFMWX8gbkDzp6ASE21VCPSofWw==}
+    peerDependencies:
+      '@codemirror/language': '>=6.0.0'
+      '@codemirror/state': '>=6.0.0'
+      '@codemirror/view': '>=6.0.0'
+
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -690,6 +681,10 @@ packages:
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
+
+  codemirror-theme-vitesse@0.1.2:
+    resolution: {integrity: sha512-2sRG4KP7GD3CjhV2OD8zuHTTjxNZEKpFSM2J0ZHbgXsPfiNlAc4S6HXao3WshqFTDUuUw/m2CCs439V3IVJicg==}
+    engines: {node: '>=18.18.0'}
 
   codemirror@6.0.1:
     resolution: {integrity: sha512-J8j+nZ+CdWmIeFIGXEFbFPtpiYacFMDR8GlHK3IyHQJMCaVRfGx9NT+Hxivv1ckLWPvNdZqndbr/7lVhrf/Svg==}
@@ -825,6 +820,9 @@ packages:
 
   html-entities@2.3.3:
     resolution: {integrity: sha512-DV5Ln36z34NNTDgnz0EWGBLZENelNAtkiFA4kyNOG2tDI6Mz1uSWiq1wAKdyjnJwyDiDO7Fa2SO1CTxPXL8VxA==}
+
+  immutable@4.3.7:
+    resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
 
   is-binary-path@2.1.0:
     resolution: {integrity: sha512-ZMERYes6pDydyuGidse7OsHxtbI7WVeUEozgR/g7rd0xUimYNlvZRE/K2MgZTjWy725IfelLeVcEM97mmtRGXw==}
@@ -1039,6 +1037,11 @@ packages:
 
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==}
+
+  sass@1.77.8:
+    resolution: {integrity: sha512-4UHg6prsrycW20fqLGPShtEvo/WyHRVRHwOP4DzkUrObWoWI05QBSfzU71TVB7PFaL104TwNaHpjlWXAZbQiNQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
 
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
@@ -1532,20 +1535,6 @@ snapshots:
 
   '@floating-ui/utils@0.2.7': {}
 
-  '@fsegurai/codemirror-theme-github-dark@6.0.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/highlight@1.2.1)':
-    dependencies:
-      '@codemirror/language': 6.10.2
-      '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.32.0
-      '@lezer/highlight': 1.2.1
-
-  '@fsegurai/codemirror-theme-github-light@6.0.2(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)(@lezer/highlight@1.2.1)':
-    dependencies:
-      '@codemirror/language': 6.10.2
-      '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.32.0
-      '@lezer/highlight': 1.2.1
-
   '@iconify-json/iconoir@1.1.46':
     dependencies:
       '@iconify/types': 2.0.0
@@ -1779,6 +1768,12 @@ snapshots:
     dependencies:
       undici-types: 6.18.2
 
+  '@uiw/codemirror-themes@4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)':
+    dependencies:
+      '@codemirror/language': 6.10.2
+      '@codemirror/state': 6.4.1
+      '@codemirror/view': 6.32.0
+
   ansi-regex@5.0.1: {}
 
   ansi-regex@6.0.1: {}
@@ -1874,6 +1869,15 @@ snapshots:
   clsx@2.0.0: {}
 
   clsx@2.1.1: {}
+
+  codemirror-theme-vitesse@0.1.2(@codemirror/language@6.10.2)(@codemirror/view@6.32.0):
+    dependencies:
+      '@codemirror/state': 6.4.1
+      '@lezer/highlight': 1.2.1
+      '@uiw/codemirror-themes': 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)
+    transitivePeerDependencies:
+      - '@codemirror/language'
+      - '@codemirror/view'
 
   codemirror@6.0.1(@lezer/common@1.2.1):
     dependencies:
@@ -2017,6 +2021,8 @@ snapshots:
       function-bind: 1.1.2
 
   html-entities@2.3.3: {}
+
+  immutable@4.3.7: {}
 
   is-binary-path@2.1.0:
     dependencies:
@@ -2203,6 +2209,12 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
+  sass@1.77.8:
+    dependencies:
+      chokidar: 3.6.0
+      immutable: 4.3.7
+      source-map-js: 1.2.0
+
   semver@6.3.1: {}
 
   seroval-plugins@1.1.1(seroval@1.1.1):
@@ -2349,7 +2361,7 @@ snapshots:
 
   validate-html-nesting@1.2.2: {}
 
-  vite-plugin-solid@2.10.2(solid-js@1.8.21)(vite@5.4.0(@types/node@22.3.0)):
+  vite-plugin-solid@2.10.2(solid-js@1.8.21)(vite@5.4.0(@types/node@22.3.0)(sass@1.77.8)):
     dependencies:
       '@babel/core': 7.25.2
       '@types/babel__core': 7.20.5
@@ -2357,12 +2369,12 @@ snapshots:
       merge-anything: 5.1.7
       solid-js: 1.8.21
       solid-refresh: 0.6.3(solid-js@1.8.21)
-      vite: 5.4.0(@types/node@22.3.0)
-      vitefu: 0.2.5(vite@5.4.0(@types/node@22.3.0))
+      vite: 5.4.0(@types/node@22.3.0)(sass@1.77.8)
+      vitefu: 0.2.5(vite@5.4.0(@types/node@22.3.0)(sass@1.77.8))
     transitivePeerDependencies:
       - supports-color
 
-  vite@5.4.0(@types/node@22.3.0):
+  vite@5.4.0(@types/node@22.3.0)(sass@1.77.8):
     dependencies:
       esbuild: 0.21.5
       postcss: 8.4.41
@@ -2370,10 +2382,11 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.3.0
       fsevents: 2.3.3
+      sass: 1.77.8
 
-  vitefu@0.2.5(vite@5.4.0(@types/node@22.3.0)):
+  vitefu@0.2.5(vite@5.4.0(@types/node@22.3.0)(sass@1.77.8)):
     optionalDependencies:
-      vite: 5.4.0(@types/node@22.3.0)
+      vite: 5.4.0(@types/node@22.3.0)(sass@1.77.8)
 
   w3c-keyname@2.2.8: {}
 
