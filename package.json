@@ -11,6 +11,7 @@
   "dependencies": {
     "@codemirror/lang-sass": "^6.0.2",
     "@codemirror/state": "^6.4.1",
+    "@corvu/resizable": "^0.2.3",
     "@iconify-json/iconoir": "^1.1.46",
     "@kobalte/core": "^0.13.4",
     "class-variance-authority": "^0.7.0",

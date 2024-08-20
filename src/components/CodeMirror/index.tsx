@@ -1,43 +1,59 @@
+import { Accessor, type Component, createComputed, createEffect, createMemo, onMount, untrack } from "solid-js";
+
+import { localStorageManager } from "@kobalte/core";
+
 import { basicSetup, EditorView } from "codemirror";
 import { sass } from "@codemirror/lang-sass";
-import { Compartment } from '@codemirror/state'
-import { type Component, createEffect, onMount, Ref } from "solid-js";
+import { Compartment, EditorState } from '@codemirror/state'
 import { vitesseLight } from 'codemirror-theme-vitesse/light'
 import { vitesseDark } from 'codemirror-theme-vitesse/dark'
 
-import { useDark } from "~/hooks/useDark";
-import { localStorageManager } from "@kobalte/core";
+import { Resizable, ResizableHandle, ResizablePanel } from "~/components/ui/resizable"
+import { useDark } from "~/hooks/useDark"
 
-const CodeMirror: Component<{ ref?: Ref<{ getCode: () => string }> }> = (props) => {
-  let mirrorRef: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+const CodeMirror: Component<{ scssCode: Accessor<string>, cssCode: Accessor<string>, onChange: (code: string) => void }> = (props) => {
+  let editorMirrorRef: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+  let readonlyMirrorRef: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
+
   let editorRef: EditorView | undefined;
+  let readonlyRef: EditorView | undefined;
 
   const themeConfig = new Compartment();
+  const theme = localStorageManager.get();
 
   const [isDark] = useDark()
 
+  const extensions = [basicSetup, themeConfig.of([theme === 'dark' ? vitesseDark : vitesseLight])]
+
   function initMirror() {
-    if (mirrorRef) {
-      const theme = localStorageManager.get();
+    if (editorMirrorRef && readonlyMirrorRef) {
+      const code = untrack(createMemo(props.scssCode))
+      const compiledCode = untrack(createMemo(props.cssCode))
 
       editorRef = new EditorView({
-        doc: `// Input your sass/scss code here
+        doc: code,
+        extensions: [...extensions, sass()],
+        parent: editorMirrorRef as Element,
+        dispatch(tr) {
+          editorRef?.update([tr])
+          if (tr.docChanged) {
+            props?.onChange(editorRef?.state.doc.toString() || '')
+          }
+        }
+      });
 
-              $refd: red;
-
-              .demo {
-                color: $refd;}`,
-        extensions: [basicSetup, sass(), themeConfig.of([theme === 'dark' ? vitesseDark : vitesseLight])],
-        parent: mirrorRef as Element,
+      readonlyRef = new EditorView({
+        doc: compiledCode || '',
+        extensions: [
+          ...extensions,
+          sass({ indented: true }),
+          EditorView.editable.of(false),
+          EditorState.readOnly.of(true)
+        ],
+        parent: readonlyMirrorRef as Element,
       });
     }
   }
-
-  function getCode() {
-    return editorRef?.state.doc.toString() || '';
-  }
-
-  props.ref && props.ref({ getCode })
 
   onMount(initMirror)
 
@@ -47,10 +63,31 @@ const CodeMirror: Component<{ ref?: Ref<{ getCode: () => string }> }> = (props) 
     editorRef?.dispatch({
       effects: themeConfig.reconfigure([theme])
     })
+
+    readonlyRef?.dispatch({
+      effects: themeConfig.reconfigure([theme])
+    })
   })
 
+  createComputed(() => {
+    const newCssCode = createMemo(props.cssCode)
+    if (newCssCode() === readonlyRef?.state.doc.toString()) return
+
+    readonlyRef?.dispatch({
+      changes: { from: 0, to: readonlyRef.state.doc.length, insert: newCssCode() || '' }
+    });
+  });
+
   return (
-    <div ref={mirrorRef}></div>
+    <Resizable orientation="horizontal">
+      <ResizablePanel>
+        <div ref={editorMirrorRef}></div>
+      </ResizablePanel>
+      <ResizableHandle withHandle />
+      <ResizablePanel>
+        <div ref={readonlyMirrorRef}></div>
+      </ResizablePanel>
+    </Resizable>
   );
 }
 
