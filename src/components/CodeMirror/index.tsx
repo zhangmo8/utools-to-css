@@ -71,7 +71,9 @@ const CodeMirror: Component<{ scssCode: Accessor<string>, cssCode: Accessor<stri
 
   createComputed(() => {
     const newCssCode = createMemo(props.cssCode)
-    if (newCssCode() === readonlyRef?.state.doc.toString()) return
+    if (newCssCode() === readonlyRef?.state.doc.toString()) {
+      return
+    }
 
     readonlyRef?.dispatch({
       changes: { from: 0, to: readonlyRef.state.doc.length, insert: newCssCode() || '' }
