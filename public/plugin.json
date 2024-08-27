@@ -4,14 +4,11 @@
   "features": [
     {
       "code": "css",
-      "explain": "sass/scss/less 转换成 css",
+      "explain": "sass/scss 转换成 css",
       "cmds": [
         "scss",
         "sass"
       ]
     }
   ]
-  // "development": {
-  //   "main": "http://127.0.0.1:5173"
-  // }
 }
