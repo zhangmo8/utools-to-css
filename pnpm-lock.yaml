@@ -11,9 +11,9 @@ importers:
       '@codemirror/lang-sass':
         specifier: ^6.0.2
         version: 6.0.2(@codemirror/view@6.32.0)
-      '@codemirror/merge':
-        specifier: ^6.7.0
-        version: 6.7.0
+      '@codemirror/language':
+        specifier: ^6.10.2
+        version: 6.10.2
       '@codemirror/state':
         specifier: ^6.4.1
         version: 6.4.1
@@ -26,6 +26,9 @@ importers:
       '@kobalte/core':
         specifier: ^0.13.4
         version: 0.13.4(solid-js@1.8.21)
+      '@lezer/highlight':
+        specifier: ^1.2.1
+        version: 1.2.1
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -35,9 +38,6 @@ importers:
       codemirror:
         specifier: ^6.0.1
         version: 6.0.1(@lezer/common@1.2.1)
-      codemirror-theme-vitesse:
-        specifier: ^0.1.2
-        version: 0.1.2(@codemirror/language@6.10.2)(@codemirror/view@6.32.0)
       sass:
         specifier: ^1.77.8
         version: 1.77.8
@@ -193,9 +193,6 @@ packages:
 
   '@codemirror/lint@6.8.1':
     resolution: {integrity: sha512-IZ0Y7S4/bpaunwggW2jYqwLuHj0QtESf5xcROewY6+lDNwZ/NzvR4t+vpYgg9m7V8UXLPYqG+lu3DF470E5Oxg==}
-
-  '@codemirror/merge@6.7.0':
-    resolution: {integrity: sha512-hVGhYZMBKLnb0Q8NXZ06uR1oFOuiMLNs/igZov5PpOqCaxQLGQA5y2zRojn1G6SyBQ0/nYM3aFeJb5kr4xlZag==}
 
   '@codemirror/search@6.5.6':
     resolution: {integrity: sha512-rpMgcsh7o0GuCDUXKPvww+muLA1pDJaFrpq/CCHtpQJYz8xopu4D1hPcKRoDD0YlF8gZaqTNIRa4VRBWyhyy7Q==}
@@ -597,13 +594,6 @@ packages:
   '@types/node@22.3.0':
     resolution: {integrity: sha512-nrWpWVaDZuaVc5X84xJ0vNrLvomM205oQyLsRt7OHNZbSHslcWsvgFR7O7hire2ZonjLrWBbedmotmIlJDVd6g==}
 
-  '@uiw/codemirror-themes@4.23.0':
-    resolution: {integrity: sha512-9fiji9xooZyBQozR1i6iTr56YP7j/Dr/VgsNWbqf5Szv+g+4WM1iZuiDGwNXmFMWX8gbkDzp6ASE21VCPSofWw==}
-    peerDependencies:
-      '@codemirror/language': '>=6.0.0'
-      '@codemirror/state': '>=6.0.0'
-      '@codemirror/view': '>=6.0.0'
-
   ansi-regex@5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
@@ -695,10 +685,6 @@ packages:
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
-
-  codemirror-theme-vitesse@0.1.2:
-    resolution: {integrity: sha512-2sRG4KP7GD3CjhV2OD8zuHTTjxNZEKpFSM2J0ZHbgXsPfiNlAc4S6HXao3WshqFTDUuUw/m2CCs439V3IVJicg==}
-    engines: {node: '>=18.18.0'}
 
   codemirror@6.0.1:
     resolution: {integrity: sha512-J8j+nZ+CdWmIeFIGXEFbFPtpiYacFMDR8GlHK3IyHQJMCaVRfGx9NT+Hxivv1ckLWPvNdZqndbr/7lVhrf/Svg==}
@@ -1445,14 +1431,6 @@ snapshots:
       '@codemirror/view': 6.32.0
       crelt: 1.0.6
 
-  '@codemirror/merge@6.7.0':
-    dependencies:
-      '@codemirror/language': 6.10.2
-      '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.32.0
-      '@lezer/highlight': 1.2.1
-      style-mod: 4.1.2
-
   '@codemirror/search@6.5.6':
     dependencies:
       '@codemirror/state': 6.4.1
@@ -1795,12 +1773,6 @@ snapshots:
     dependencies:
       undici-types: 6.18.2
 
-  '@uiw/codemirror-themes@4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)':
-    dependencies:
-      '@codemirror/language': 6.10.2
-      '@codemirror/state': 6.4.1
-      '@codemirror/view': 6.32.0
-
   ansi-regex@5.0.1: {}
 
   ansi-regex@6.0.1: {}
@@ -1896,15 +1868,6 @@ snapshots:
   clsx@2.0.0: {}
 
   clsx@2.1.1: {}
-
-  codemirror-theme-vitesse@0.1.2(@codemirror/language@6.10.2)(@codemirror/view@6.32.0):
-    dependencies:
-      '@codemirror/state': 6.4.1
-      '@lezer/highlight': 1.2.1
-      '@uiw/codemirror-themes': 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.32.0)
-    transitivePeerDependencies:
-      - '@codemirror/language'
-      - '@codemirror/view'
 
   codemirror@6.0.1(@lezer/common@1.2.1):
     dependencies:

@@ -1,15 +1,11 @@
-import { Accessor, type Component, createComputed, createEffect, createMemo, onMount, untrack } from "solid-js";
-
-import { localStorageManager } from "@kobalte/core";
+import { Accessor, type Component, createComputed, createMemo, onMount, untrack } from "solid-js";
 
 import { basicSetup, EditorView } from "codemirror";
 import { sass } from "@codemirror/lang-sass";
-import { Compartment, EditorState } from '@codemirror/state'
-import { vitesseLight } from 'codemirror-theme-vitesse/light'
-import { vitesseDark } from 'codemirror-theme-vitesse/dark'
+import { EditorState } from '@codemirror/state'
 
 import { Resizable, ResizableHandle, ResizablePanel } from "~/components/ui/resizable"
-import { useDark } from "~/hooks/useDark"
+import { vitesse } from "./theme";
 
 const CodeMirror: Component<{ scssCode: Accessor<string>, cssCode: Accessor<string>, onChange: (code: string) => void }> = (props) => {
   let editorMirrorRef: HTMLDivElement | ((el: HTMLDivElement) => void) | undefined;
@@ -18,12 +14,7 @@ const CodeMirror: Component<{ scssCode: Accessor<string>, cssCode: Accessor<stri
   let editorRef: EditorView | undefined;
   let readonlyRef: EditorView | undefined;
 
-  const themeConfig = new Compartment();
-  const theme = localStorageManager.get();
-
-  const [isDark] = useDark()
-
-  const extensions = [basicSetup, themeConfig.of([theme === 'dark' ? vitesseDark : vitesseLight])]
+  const extensions = [basicSetup, vitesse]
 
   function initMirror() {
     if (editorMirrorRef && readonlyMirrorRef) {
@@ -56,18 +47,6 @@ const CodeMirror: Component<{ scssCode: Accessor<string>, cssCode: Accessor<stri
   }
 
   onMount(initMirror)
-
-  createEffect(() => {
-    const theme = isDark() ? vitesseDark : vitesseLight;
-
-    editorRef?.dispatch({
-      effects: themeConfig.reconfigure([theme])
-    })
-
-    readonlyRef?.dispatch({
-      effects: themeConfig.reconfigure([theme])
-    })
-  })
 
   createComputed(() => {
     const newCssCode = createMemo(props.cssCode)
