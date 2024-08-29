@@ -3,12 +3,9 @@
  * https://github.com/unocss/unocss/blob/main/packages/inspector/client/theme.ts
  *
  * MIT License
- * Copyright (c) 2019-present, Yuxi (Evan)
- * https://github.com/vitejs/vite/blob/main/LICENSE
+ * Copyright (c) 2021-PRESENT Anthony Fu <https://github.com/antfu>
+ * https://github.com/unocss/unocss/blob/main/LICENSE
  *
- * Farm draws on the code of part of the vite server in order to better achieve the compatibility
- * progress of the vite ecosystem and the integrity of vite's ecological development,
- * which can reduce many unknown or known problems.
  */
 import { EditorView } from 'codemirror'
 import type { Extension } from '@codemirror/state'
