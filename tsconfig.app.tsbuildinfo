@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/index.tsx","./src/utools.d.ts","./src/vite-env.d.ts","./src/components/codemirror/index.tsx","./src/components/codemirror/theme.ts","./src/components/themeicon/index.tsx","./src/components/ui/button.tsx","./src/components/ui/callout.tsx","./src/components/ui/resizable.tsx","./src/hooks/usedark.ts","./src/lib/utils.ts"],"version":"5.7.2"}
