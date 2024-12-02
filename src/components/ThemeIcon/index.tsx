@@ -17,8 +17,8 @@ const ThemeIcon = () => {
 
   return (
     <ToggleButton class="rounded-full border hover:bg-accent hover:text-accent-foreground absolute top-4 right-4 z-10" pressed={isDark()} onChange={toggleDark}>
-      <Show when={isDark()} fallback={<div onClick={toggleDark} class={baseStyle} children={<i class="iconify iconoir--sun-light size-6 " />} />}>
-        <div onClick={toggleDark} class={baseStyle} children={<i class="iconify iconoir--half-moon w-6 h-6" />} />
+      <Show when={isDark()} fallback={<div class={baseStyle} children={<i class="iconify iconoir--sun-light size-6 " />} />}>
+        <div class={baseStyle} children={<i class="iconify iconoir--half-moon w-6 h-6" />} />
       </Show>
     </ToggleButton>
   );
