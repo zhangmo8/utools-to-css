@@ -10,6 +10,8 @@
 :root {
   --cm-font-family: 'Fira Code', monospace;
   --cm-foreground: #393a3480;
+  --cm-tooltip-background: #fdfdfd;
+  --cm-border: #9ca3af1a;
   --cm-background: #fdfdfd;
   --cm-comment: #a0ada0;
   --cm-string: #b56959;
@@ -31,6 +33,7 @@
 html[data-kb-theme="dark"] {
   --cm-scheme: dark;
   --cm-foreground: #d4cfbf80;
+  --cm-tooltip-background: #121212;
   --cm-background: #121212;
   --cm-comment: #758575;
   --cm-string: #d48372;
